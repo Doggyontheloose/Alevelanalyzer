@@ -5,7 +5,7 @@ import time
 from openai import OpenAI
 
 # Initialize OpenAI client
-client = OpenAI(api_key=st.secrets["secrets"]["OPENAI_API_KEY"])
+client = OpenAI(api_key=openai_api_key)
 
 # Use whichever model your assistant was created with
 model = "gpt-4o-mini"
