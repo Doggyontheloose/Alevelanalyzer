@@ -1,11 +1,12 @@
 
 import streamlit as st
 import time
-
 from openai import OpenAI
 
-# Initialize OpenAI client
-client = OpenAI(api_key=openai_api_key)
+with st.sidebar:
+    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
+
+
 
 # Use whichever model your assistant was created with
 model = "gpt-4o-mini"
@@ -26,9 +27,6 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
-
-with st.sidebar:
-    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
 
 # Function to get assistant response
 def get_assistant_response(assistant_id, input_text, thread_id):
@@ -78,6 +76,11 @@ st.subheader("For math and sciences")
 
 # Replace with your existing assistant ID (already created via API with vector store & files)
 ASSISTANT_ID = "asst_kALsd8EA7g4f88QHioNTA50y"
+
+if not openai_api_key:
+        st.info("Please add your OpenAI API key to continue.")
+        st.stop()
+client = OpenAI(api_key=openai_api_key)
 
 # Initialize session state
 for key in ['thread_id', 'messages']:
