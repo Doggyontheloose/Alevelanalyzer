@@ -54,7 +54,7 @@ def get_assistant_response(assistant_id, input_text, thread_id):
         time.sleep(1)
 
     # Get the latest assistant message
-    messages = cleint.beta.threads.messages.list(
+    messages = client.beta.threads.messages.list(
         thread_id=thread_id,
         order="desc",
         limit=1
